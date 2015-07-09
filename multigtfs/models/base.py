@@ -279,6 +279,7 @@ class Base(models.Model):
 
             # Create after accumulating a batch
             new_objects.append(cls(**fields))
+            print len(new_objects)
             if len(new_objects) % batch_size == 0:  # pragma: no cover
                 cls.objects.bulk_create(new_objects)
                 count += len(new_objects)
