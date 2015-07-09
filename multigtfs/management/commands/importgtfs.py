@@ -32,7 +32,16 @@ class Command(BaseCommand):
             '-n', '--name', type='string', dest='name',
             help=(
                 'Set the name of the imported feed.  Defaults to name derived'
-                ' from agency name and start date')),)
+                ' from agency name and start date')),
+
+        make_option(
+            '-d', '--destroy', action='store_true', dest='destroy',
+            help=(
+                'Set the name of the imported feed.  Defaults to name derived'
+                ' from agency name and start date')),
+
+
+                )
 
     def handle(self, *args, **options):
         if len(args) == 0:
@@ -42,6 +51,9 @@ class Command(BaseCommand):
         gtfs_feed = args[0]
         unset_name = 'Imported at %s' % datetime.now()
         name = options.get('name') or unset_name
+
+        destroy = options.get('destroy')
+
 
         # Setup logging
         verbosity = int(options['verbosity'])
@@ -68,6 +80,11 @@ class Command(BaseCommand):
         # Disable database query logging
         if settings.DEBUG:
             connection.use_debug_cursor = False
+
+        if destroy:
+            if  options.get('name'):
+                feed = Feed.objects.filter(name=name)
+                feed.delete()
 
         feed = Feed.objects.create(name=name)
         feed.import_gtfs(gtfs_feed)
