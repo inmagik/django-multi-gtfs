@@ -268,6 +268,7 @@ class Base(models.Model):
                 fields['point'] = "POINT(%s)" % (' '.join(point_coords))
 
             # Is the item unique?
+            """
             ukey = tuple(ukey_values.get(u) for u in cls._unique_fields)
             if ukey in unique_line:
                 logger.warning(
@@ -276,7 +277,7 @@ class Base(models.Model):
                 continue
             else:
                 unique_line[ukey] = csv_reader.line_num
-
+            """
             # Create after accumulating a batch
             new_objects.append(cls(**fields))
             if len(new_objects) % batch_size == 0:  # pragma: no cover
