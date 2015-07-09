@@ -101,17 +101,17 @@ class Command(BaseCommand):
                 shapes.count(), '' if shapes.count() == 1 else 's',
                 end_time - start_time)
 
+            """
             start_time = time.time()
             trips = Trip.objects.in_feed(feed)
             for trip in trips:
-                pass
-                #trip.update_geometry(update_parent=False)
+                trip.update_geometry(update_parent=False)
             end_time = time.time()
             logger.debug(
                 "Imported %s trip%s in %0.1f seconds",
                 trips.count(), '' if trips.count() == 1 else 's',
                 end_time - start_time)
-
+            """
             start_time = time.time()
             routes = Route.objects.in_feed(feed)
             for route in routes:
