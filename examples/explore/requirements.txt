@@ -4,4 +4,4 @@
 #multigtfs
 
 # Use South for database migrations
-South
+#South
