@@ -102,11 +102,10 @@ class Command(BaseCommand):
                 end_time - start_time)
 
             start_time = time.time()
-            #trips = Trip.objects.filter(route__feed=feed)
-            trips = Trip.objects.all()
+            trips = Trip.objects.in_feed(feed)
             for trip in trips:
-                print trip
-                trip.update_geometry(update_parent=False)
+                pass
+                #trip.update_geometry(update_parent=False)
             end_time = time.time()
             logger.debug(
                 "Imported %s trip%s in %0.1f seconds",
