@@ -123,7 +123,6 @@ class Feed(models.Model):
         start_time = time.time()
         for shape in self.shape_set.all():
             shape.update_geometry(update_parent=False)
-            print shape
         end_time = time.time()
         logger.info(
             "Updated geometries for %d shapes in %0.1f seconds",
