@@ -115,6 +115,7 @@ class Command(BaseCommand):
             start_time = time.time()
             routes = Route.objects.in_feed(feed)
             for route in routes:
+                print route
                 route.update_geometry()
             end_time = time.time()
             logger.debug(
