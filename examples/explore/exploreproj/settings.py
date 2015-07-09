@@ -66,6 +66,9 @@ WSGI_APPLICATION = 'exploreproj.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
+#this is for mac with homebrew..
+#SPATIALITE_LIBRARY_PATH='/usr/local/lib/mod_spatialite.dylib'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.spatialite',
