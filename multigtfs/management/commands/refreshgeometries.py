@@ -102,8 +102,9 @@ class Command(BaseCommand):
                 end_time - start_time)
 
             start_time = time.time()
-            trips = Trip.objects.in_feed(feed)
+            trips = Trip.objects.filter(feed=feed)
             for trip in trips:
+                print trip
                 trip.update_geometry(update_parent=False)
             end_time = time.time()
             logger.debug(
