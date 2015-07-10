@@ -106,7 +106,8 @@ class Base(models.Model):
         abstract = True
         app_label = 'multigtfs'
 
-    objects = BaseManager()
+    #objects = BaseManager()
+    objects = models.GeoManager()
 
     # The relation of the model to the feed it belongs to.
     _rel_to_feed = 'feed'
